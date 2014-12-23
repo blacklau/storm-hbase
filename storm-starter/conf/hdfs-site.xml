@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+	<!--configuration for namenode-->
+<property>
+    <name>dfs.nameservices</name>
+    <value>ns1</value>
+    <description></description>      
+</property>
+
+<property>
+    <name>dfs.ha.namenodes.ns1</name>
+    <value>nn1,nn2</value>
+</property>
+
+<property>
+    <name>dfs.namenode.rpc-address.ns1.nn1</name>
+    <value>10.5.4.10:9000</value>
+</property>
+
+<property>
+    <name>dfs.namenode.http-address.ns1.nn1</name>
+    <value>10.5.4.10:50070</value>
+</property>
+
+<property>
+    <name>dfs.namenode.rpc-address.ns1.nn2</name>
+    <value>10.5.4.13:9000</value>
+</property>
+
+<property>
+    <name>dfs.namenode.http-address.ns1.nn2</name>
+    <value>10.5.4.13:50070</value>
+</property>
+<property>
+     <name>dfs.namenode.shared.edits.dir</name>
+  <value>qjournal://10.5.4.10:8485;10.5.4.11:8485;10.5.4.12:8485/mycluster</value>    <description></description>
+</property>
+<property>
+  <name>dfs.journalnode.edits.dir</name>
+  <value>/home/hadoop/journal/node/local/data</value>
+</property>
+<property>
+    <name>ha.zookeeper.session-timeout.ms</name>
+    <value>5000</value>
+    <description></description>
+</property>
+
+<property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>sshfence</value>
+    <description></description>
+</property>
+<property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+    <description></description>
+</property>
+
+<property>
+    <name>dfs.client.failover.proxy.provider.ns1</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    <description></description>
+</property>
+<property>      
+           <name>dfs.ha.fencing.ssh.private-key-files</name>      
+           <value>/home/hadoop/.ssh/id_rsa</value>      
+       </property>
+	<property>
+		 <name>dfs.namenode.name.dir</name>
+		 <value>/home/hadoop/namenodelogs</value>
+	</property>
+	<property>
+		 <name>dfs.namenode.secondary.http-address</name>
+		 <value>10.5.4.11:9001</value>
+	</property>
+	<property>
+		 <name>dfs.namenode.hosts</name>
+		 <value>10.5.4.11,10.5.4.12</value>
+	</property>
+
+	<property>
+		 <name>dfs.blocksize</name>
+		 <value>512m</value>	
+	</property>
+	<property>
+		 <name>dfs.namenode.handler.count</name>
+		 <value>100</value>
+	</property>
+	<!--configuration for datanode-->
+	<property>
+		 <name>dfs.datanode.data.dir</name>
+		 <value>/home/hadoop/dfsdata</value>
+	</property>
+	<property>
+        <name>dfs.datanode.socket.write.timeout</name>
+        <value>100000000</value>
+    </property>
+ 
+    <property>
+        <name>dfs.socket.timeout</name>
+        <value>100000000</value>
+    </property>
+
+<property>
+<name>dfs.permissions</name>
+<value>false</value>
+<description>
+If "true", enable permission checking in HDFS.
+If "false", permission checking is turned off,
+but all other behavior is unchanged.
+Switching from one parameter value to the other does not change the mode,
+owner or group of files or directories.
+</description>
+</property>
+</configuration>
